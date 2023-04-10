@@ -1,0 +1,53 @@
+.profile {
+    display: flex;
+}
+
+.profileRight {
+    flex: 10.5;
+}
+
+.profileCover {
+    height: 320px;
+    position: relative;
+}
+
+.profileCoverImg {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.profileUserImg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+    top: 150px;
+    /* border: 3px solid white; */
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileInfoName{
+    font-size: 24px;
+}
+
+.profileInfoBuyerName{
+    font-size: 24px;
+    color: transparent;
+    background: repeating-linear-gradient(0deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%); 
+    -webkit-text-stroke:  0.1px black;              
+	background-clip: text;
+}
+
+.profileRightBottom{
+    display: flex;
+}

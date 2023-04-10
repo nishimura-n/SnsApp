@@ -1,0 +1,24 @@
+.Container {
+    display: flex;
+    width: 100%;
+    background-color: #f8fcff;
+}
+
+.shop {
+    flex: 6;
+    margin-top: 30px;
+}
+
+.imgae {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
