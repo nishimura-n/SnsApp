@@ -11,11 +11,9 @@ import axios from "axios";
 
 function App() {
   const [user,setUser] = useState(null);
-  //const { user } = useContext(AuthContext);
   const { user: token } = useContext(AuthContext);
   useEffect(() => {
     const fetchUser = async () => {
-      console.log("App");
       let response = {};
       if(token!==null){ 
       response = await axios.post(`/users/jwt`,token)
@@ -26,12 +24,11 @@ function App() {
     fetchUser();
   }, [token]);
 
-  //console.log(user);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={user ? < Home /> : <Register/>}/>
+        <Route path="/" element={< Home />}/>
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />}/>
         <Route path="/profile/:username" element={<Profile />}/>

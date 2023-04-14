@@ -11,6 +11,8 @@ export default function Topbar() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user,setUser] = useState({});
   const { user: token } = useContext(AuthContext);
+
+  //ユーザー情報の取得とトークンの有効期限切れかどうか確認
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.post(`/users/jwt`,token)

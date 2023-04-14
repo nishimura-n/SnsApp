@@ -14,10 +14,7 @@ passport.use(
       session: false,
     },
     async(username,password,done) => {
-      //console.log(username);
-      //console.log(password);
       const user = await User.findOne({ email: username });
-      // console.log(user);
       if(!user){
         done(null, false, {
           message: "usernameまたはpasswordが違います",

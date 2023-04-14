@@ -9,12 +9,11 @@ function Regiter() {
   const email = useRef();
   const password = useRef();
   const passwordConfirmation = useRef();
-
   const navigate = useNavigate();
 
+  //登録ページでもローカルストレージをリセットする．
   useEffect(() => {
     localStorage.clear();
-    console.log("消す");
   }, []);
 
   const handleSubmit = async(e) => {

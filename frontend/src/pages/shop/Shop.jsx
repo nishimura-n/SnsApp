@@ -12,8 +12,8 @@ export default function Shop() {
   const [message, setMessage] = useState('');
   const [currentUser,setCurrentUser] = useState({});
   const { user: token } = useContext(AuthContext);
-  //console.log(currentUser._id);
 
+  //ユーザー情報を取得
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.post(`/users/jwt`,token);
@@ -34,7 +34,7 @@ export default function Shop() {
   );
 
   useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
+    // チェックアウトから戻るリダイレクトかどうかを確認する。
     const query = new URLSearchParams(window.location.search);
 
     if (query.get("success")) {

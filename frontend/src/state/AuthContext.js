@@ -1,22 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
 import AuthReducer from "./AuthReducer"
-//import axios from "axios";
 
 //最初のユーザー状態を定義
-//const response = await axios.get(`/users/jwt`);
 const initialState = {
     user: JSON.parse(localStorage.getItem("token")) || null,
-    // user: {
-    //   _id: "63e86811f02672810ea6c545",
-    //   username: "no-ri",
-    //   email: "no-ri@example.com",
-    //   password: "123456",
-    //   profilePicture: "/person/1.jpeg",
-    //   coverPicture: "",
-    //   followers: [],
-    //   followings: [],
-    //   isAdmin: false
-    // },
     isFetching: false,
     error: false,
 }

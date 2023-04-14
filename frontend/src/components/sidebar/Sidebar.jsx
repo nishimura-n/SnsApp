@@ -19,6 +19,8 @@ import axios from 'axios'
 function Sidebar() {
   const [user,setUser] = useState({});
   const { user: token } = useContext(AuthContext);
+
+  //ユーザ情報取得
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.post(`/users/jwt`,token);
@@ -27,11 +29,14 @@ function Sidebar() {
     fetchUser();
   }, [token]);
   const navigate = useNavigate();
-  const Logout = () => {//ログアウトAPI作る必要がある．
+
+  //ログアウト処理
+  const Logout = () => {
     localStorage.clear();
     navigate("/login");
     window.location.reload();
   }
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">

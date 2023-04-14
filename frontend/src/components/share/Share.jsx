@@ -11,6 +11,7 @@ function Share() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user,setUser] = useState({});
   const { user: token } = useContext(AuthContext);
+  const [file,setFile] = useState(null);
   const desc = useRef();
 
   useEffect(() => {
@@ -20,9 +21,6 @@ function Share() {
     };
     fetchUser();
   }, [token]);
-
-  const [file,setFile] = useState(null);
-  //console.log(file);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
