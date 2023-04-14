@@ -2,18 +2,27 @@ import Image from '@mui/icons-material/Image'
 import Gif from '@mui/icons-material/Gif'
 import Face from '@mui/icons-material/Face'
 import Analytics from '@mui/icons-material/Analytics'
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./Share.css"
 import { AuthContext } from '../../state/AuthContext'
 import axios from "axios"
 
 function Share() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
-  const {user} = useContext(AuthContext);
+  const [user,setUser] = useState({});
+  const { user: token } = useContext(AuthContext);
   const desc = useRef();
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.post(`/users/jwt`,token);
+      setUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
+
   const [file,setFile] = useState(null);
-  console.log(file);
+  //console.log(file);
 
   const handleSubmit = async(e) => {
     e.preventDefault();

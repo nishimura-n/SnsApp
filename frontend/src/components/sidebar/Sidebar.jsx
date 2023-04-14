@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Sidebar.css"
 import Home from '@mui/icons-material/Home'
 import Search from '@mui/icons-material/Search'
@@ -14,9 +14,18 @@ import { useNavigate } from "react-router-dom";
 import { Users } from '../../dummyDate'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
+import axios from 'axios'
 
 function Sidebar() {
-  const {user} = useContext(AuthContext);
+  const [user,setUser] = useState({});
+  const { user: token } = useContext(AuthContext);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.post(`/users/jwt`,token);
+      setUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
   const navigate = useNavigate();
   const Logout = () => {//ログアウトAPI作る必要がある．
     localStorage.clear();
@@ -57,7 +66,7 @@ function Sidebar() {
             <span className="sidebarListItemText">ショップ</span>
             </Link>
           </li>
-          {user.isBuyer ? 
+          {JSON.parse(localStorage.getItem("Buyer")) ? 
           <li className="sidebarListItem">
             <WbSunnyIcon className="sidebarIcon" />
             <Link to={'/weather '} style={{ textDecoration: "none",color: "black" }}>

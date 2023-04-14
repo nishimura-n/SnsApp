@@ -5,11 +5,29 @@ import Register from "./pages/register/Register";
 import Shop from "./pages/shop/Shop";
 import Weather from "./pages/weather/Weather";
 import {BrowserRouter as Router , Navigate, Route, Routes} from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./state/AuthContext";
+import axios from "axios";
 
 function App() {
-  const { user } = useContext(AuthContext);
+  const [user,setUser] = useState(null);
+  //const { user } = useContext(AuthContext);
+  const { user: token } = useContext(AuthContext);
+  useEffect(() => {
+    const fetchUser = async () => {
+      console.log("App");
+      let response = {};
+      if(token!==null){ 
+      response = await axios.post(`/users/jwt`,token)
+      localStorage.setItem("Buyer",JSON.stringify(response.data.isBuyer));
+      }
+      setUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
+
+  //console.log(user);
+
   return (
     <Router>
       <Routes>

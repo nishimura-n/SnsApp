@@ -8,20 +8,31 @@ import { AuthContext } from '../../state/AuthContext';
 
 function TimeLine({ username }) {
   const [posts,setPosts] = useState([]);
-
-  const {user} = useContext(AuthContext)
+  const [user,setUser] = useState({});
+  const { user: token } = useContext(AuthContext);
+  
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.post(`/users/jwt`,token);
+      setUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
+  //console.log(user)
+  //console.log(user._id)
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (!user._id) return
       const response = username 
       ? await axios.get(`/posts/profile/${username}`)//プロフィールの場合
-      : await axios.get(`/posts/timeline/${user._id}`);//ホームの場合
-      // console.log(response);
+      : await axios.get(`/posts/timeline/${user._id}`)//ホームの場合
       setPosts(
         response.data.sort((post1, post2) => {
         return new Date(post2.createdAt) - new Date(post1.createdAt);
       })
       );
+      // console.log(response);
     };
     fetchPosts();
   }, [username,user._id]);

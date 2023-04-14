@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import "./Register.css"
@@ -11,6 +11,11 @@ function Regiter() {
   const passwordConfirmation = useRef();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.clear();
+    console.log("消す");
+  }, []);
 
   const handleSubmit = async(e) => {
       e.preventDefault();

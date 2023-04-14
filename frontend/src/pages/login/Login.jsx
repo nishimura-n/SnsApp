@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import { loginCall } from '../../actionCalls';
 import { AuthContext } from '../../state/AuthContext';
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ import "./Login.css"
 function Login() {
   const email = useRef();
   const password = useRef();
-  const {user, dispatch} = useContext(AuthContext);
+  const {dispatch} = useContext(AuthContext);
   //const {user, isFetching, error, dispatch} = useContext(AuthContext); isFetchingやerrorを使う場合は<-を使う(エラーを消すために↑を使用)
 
   const handleSubmit = (e) => {
@@ -23,7 +23,11 @@ function Login() {
     )
   }
 
-  console.log(user);
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
+ // console.log(user);
 
   return (
     <div className="login">
