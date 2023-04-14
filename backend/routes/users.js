@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const { runInNewContext } = require("vm");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 //CRUD
 //ユーザー情報の更新
@@ -58,6 +59,39 @@ router.get("/", async(req, res) => {
         return res.status(500).json(err);
     }
 });
+
+const url="http://localhost:3000/shop"
+// クエリでユーザー情報を取得(jwt.ver)
+router.post("/jwt",async (req, res) => {
+    //const bearToken = req.headers['authorization'];
+    //const token = bearToken.split(' ')[1];
+    //console.log(req.body.token);
+    const token = req.body.token;
+    let decoded = {};
+    try{
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch(err){
+        if (err instanceof jwt.TokenExpiredError) {
+            console.log("あ")
+            //return res.redirect(302,url);
+            //res.redirect(307,'http://localhost:3000/login'); // ログインページにリダイレクト
+            return res.status(401).send('Token expired');
+        }
+        return res.status(401).json({ message: '不正なトークンです' });
+    }
+    jwt.verify(token, process.env.JWT_SECRET, async(err) => {
+        const userId = decoded.user;
+        const user = await User.findById(userId);
+        const { password, updatedAt, ...other} = user._doc;
+        if (err) {
+          return res.status(400).json({ message: '有効でないトークンです。' });
+        } else {
+          //return res.status(200).json({ message: '有効なトークンです。' });
+          return res.status(200).json(other);
+        }
+      });
+  }
+);
 
 //ユーザーのフォロー
 router.put("/:id/follow", async (req, res) => {

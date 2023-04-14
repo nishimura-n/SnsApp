@@ -1,14 +1,35 @@
 import Search from "@mui/icons-material/Search"
 import Chat from "@mui/icons-material/Chat"
 import Notifications from "@mui/icons-material/Notifications"
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Topbar.css"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../../state/AuthContext"
+import axios from "axios"
 
 export default function Topbar() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
-  const {user} = useContext(AuthContext);
+  const [user,setUser] = useState({});
+  const { user: token } = useContext(AuthContext);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.post(`/users/jwt`,token)
+      .catch(error => {
+        if (error.code === "ERR_BAD_REQUEST" && error.response.data === "Token expired") {
+          localStorage.clear();
+          // TokenExpiredErrorの場合はトークンが期限切れなので、ログインページにリダイレクトする
+          alert("セッションがタイムアウトしました．再度ログインしてください．");
+          window.location.href = '/login';
+        } else {
+          // その他のエラーの場合はアラートを表示する
+          alert(error.code);
+        }
+      });
+      setUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
+
   return (
     <div className="topbarContainer">
         <div className="topbarLeft">

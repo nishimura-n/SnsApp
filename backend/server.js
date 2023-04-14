@@ -22,11 +22,15 @@ mongoose.connect(process.env.MONGOURL)
 });
 
 //ミドルウェア
+app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.disable('x-powered-by');
 app.use("/api/stripe", stripeRoute);//JSON形式で渡したらだめ
 app.use("/images",express.static(path.join(__dirname,"public/images")))
 app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);

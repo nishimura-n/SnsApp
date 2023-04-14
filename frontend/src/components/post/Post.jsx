@@ -12,7 +12,8 @@ function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user,setUser] = useState({});
-  const {user: currentUser} = useContext(AuthContext);
+  const [currentUser,setCurrentUser] = useState({});
+  const { user: token } = useContext(AuthContext);
   const [beforelg, setBeforelg] = useState('');
   const [afterlg, setAfterlg] = useState('ja');
   //インターネット上で使われている言語Top10 url="https://novanexus.jp/know-how/7446/12/08/2021/"
@@ -32,8 +33,16 @@ function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
+      const response = await axios.post(`/users/jwt`,token);
+      setCurrentUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
       const response = await axios.get(`/users?userId=${post.userId}`);
-      console.log(response);
+      //console.log(response);
       setUser(response.data);
     };
     fetchUser();

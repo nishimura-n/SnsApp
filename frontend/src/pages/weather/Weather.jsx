@@ -30,7 +30,16 @@ const Weather = () => {
     const baseURL = "https://api.openweathermap.org/data/2.5/forecast?q=Osaka,JP&appid=cdc3eda3d8c884127841705c4d430d09&lang=ja&units=metric";
 
     const [post, setPost] = useState(null);
-    const {user: currentUser} = useContext(AuthContext);
+    const [currentUser,setCurrentUser] = useState({});
+    const { user: token } = useContext(AuthContext);
+
+    useEffect(() => {
+      const fetchUser = async () => {
+        const response = await axios.post(`/users/jwt`,token);
+        setCurrentUser(response.data);
+      };
+      fetchUser();
+    }, [token]);
   
     useEffect(() => {
       axios.get(baseURL).then((response) => {
@@ -125,7 +134,8 @@ const Weather = () => {
           </div>
                     :
           <div className="weather">
-            <div>不正にこのページに来ないでください．</div>
+            <div>セッションがタイムアウトしています．</div>
+            <div>再度ログインしてください．</div>
             <div>購入者のみこのページを閲覧できます．</div>
           </div>
           }

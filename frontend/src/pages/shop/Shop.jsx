@@ -1,36 +1,35 @@
 import React, { useState, useEffect,useContext } from "react";
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext';
-import { useNavigate } from "react-router-dom";
 import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import "./Shop.css"
+import axios from "axios";
 
 export default function Shop() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [message, setMessage] = useState("");
-  const {user: currentUser} = useContext(AuthContext);
-  console.log(currentUser._id);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [currentUser,setCurrentUser] = useState({});
+  const { user: token } = useContext(AuthContext);
+  //console.log(currentUser._id);
 
-  const Logout = () => {//ログアウトAPI作る必要がある．
-    localStorage.clear();
-    navigate("/login");
-    window.location.reload();
-  }
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.post(`/users/jwt`,token);
+      setCurrentUser(response.data);
+    };
+    fetchUser();
+  }, [token]);
 
   const Message = ({ message }) => (
     <section>
       <p>{message}</p>
-      <h1>注意！：再度ログイン後購入が反映されます．</h1>
-      <h1>お急ぎの方は，ログアウトボタンを押し，再度ログインしてください．</h1>
     <Link to={'/'}>
      <button>
        ホームに戻る
      </button>
     </Link>
-     <button onClick={Logout}>ログアウト</button>
     </section>
   );
 
@@ -68,7 +67,7 @@ export default function Shop() {
              <h5>100円</h5>
              <div className="info">
             <form action="http://localhost:5005/api/stripe/create-checkout-session" method="POST">
-             <input type='hidden' name='userId' value={currentUser._id} /> 
+             <input type='hidden' name='userId' value={currentUser._id || "" } /> 
              <button type="submit">購入ページに進む</button>
             </form>
              </div>

@@ -1,9 +1,11 @@
 import { createContext, useEffect, useReducer } from "react";
 import AuthReducer from "./AuthReducer"
+//import axios from "axios";
 
 //最初のユーザー状態を定義
+//const response = await axios.get(`/users/jwt`);
 const initialState = {
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    user: JSON.parse(localStorage.getItem("token")) || null,
     // user: {
     //   _id: "63e86811f02672810ea6c545",
     //   username: "no-ri",
@@ -26,7 +28,7 @@ export const AuthContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
     useEffect(() => {
-        localStorage.setItem("user",JSON.stringify(state.user));
+        localStorage.setItem("token",JSON.stringify(state.user));
     },[state.user]);
 
     return (

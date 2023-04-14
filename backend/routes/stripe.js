@@ -65,6 +65,7 @@ router.post('/webhook', express.raw({type: 'application/json'}), async (request,
   }
 
   //console.log(JSON.parse(request.body));
+  //console.log(event.type);
   //console.log(JSON.parse(request.body).data.object.id);
 
   //ローカルの場合，stripe listen --forward-to localhost:5005/api/stripe/webhookを実行しないといけない
