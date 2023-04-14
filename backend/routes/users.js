@@ -34,17 +34,6 @@ router.delete("/:id", async(req, res) => {
     }
 })
 
-// //ユーザー情報の取得
-// router.get("/:id", async(req, res) => {
-//         try{
-//             const user = await User.findById(req.params.id);
-//             const { password, updatedAt, ...other} = user._doc;
-//             return res.status(200).json(other);
-//         }catch (err){
-//             return res.status(500).json(err);
-//         }
-//     });
-
 //クエリでユーザー情報を取得
 router.get("/", async(req, res) => {
     const userId = req.query.userId;
@@ -60,25 +49,20 @@ router.get("/", async(req, res) => {
     }
 });
 
-const url="http://localhost:3000/shop"
-// クエリでユーザー情報を取得(jwt.ver)
+// トークンの認証とユーザー情報を取得
 router.post("/jwt",async (req, res) => {
-    //const bearToken = req.headers['authorization'];
-    //const token = bearToken.split(' ')[1];
-    //console.log(req.body.token);
     const token = req.body.token;
     let decoded = {};
     try{
     decoded = jwt.verify(token, process.env.JWT_SECRET);
     } catch(err){
         if (err instanceof jwt.TokenExpiredError) {
-            console.log("あ")
-            //return res.redirect(302,url);
-            //res.redirect(307,'http://localhost:3000/login'); // ログインページにリダイレクト
+            //トークンの有効期限切れ
             return res.status(401).send('Token expired');
         }
         return res.status(401).json({ message: '不正なトークンです' });
     }
+    //JWTの認証
     jwt.verify(token, process.env.JWT_SECRET, async(err) => {
         const userId = decoded.user;
         const user = await User.findById(userId);
@@ -86,7 +70,7 @@ router.post("/jwt",async (req, res) => {
         if (err) {
           return res.status(400).json({ message: '有効でないトークンです。' });
         } else {
-          //return res.status(200).json({ message: '有効なトークンです。' });
+          //ユーザー情報を返す
           return res.status(200).json(other);
         }
       });
@@ -152,9 +136,5 @@ router.put("/:id/unfollow", async (req, res) => {
         return res.status(500).json("自分自身をフォロー解除できません．");
     }
 })
-
-// router.get("/", (req, res) => {
-//     res.send("user Router");
-// });
 
 module.exports = router;

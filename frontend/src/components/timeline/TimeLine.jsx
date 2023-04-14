@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import Share from '../share/Share'
 import Post from '../post/Post'
 import "./TimeLine.css"
-//import { Posts } from '../../dummyDate'
 import axios from "axios";
 import { AuthContext } from '../../state/AuthContext';
 
@@ -11,6 +10,7 @@ function TimeLine({ username }) {
   const [user,setUser] = useState({});
   const { user: token } = useContext(AuthContext);
   
+  //ユーザ情報を取得
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.post(`/users/jwt`,token);
@@ -18,8 +18,6 @@ function TimeLine({ username }) {
     };
     fetchUser();
   }, [token]);
-  //console.log(user)
-  //console.log(user._id)
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -32,7 +30,6 @@ function TimeLine({ username }) {
         return new Date(post2.createdAt) - new Date(post1.createdAt);
       })
       );
-      // console.log(response);
     };
     fetchPosts();
   }, [username,user._id]);

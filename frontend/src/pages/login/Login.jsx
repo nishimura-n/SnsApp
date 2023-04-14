@@ -8,12 +8,9 @@ function Login() {
   const email = useRef();
   const password = useRef();
   const {dispatch} = useContext(AuthContext);
-  //const {user, isFetching, error, dispatch} = useContext(AuthContext); isFetchingやerrorを使う場合は<-を使う(エラーを消すために↑を使用)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(email.current.value);
-    // console.log(password.current.value);
     loginCall(
       {
         email: email.current.value,
@@ -23,11 +20,10 @@ function Login() {
     )
   }
 
+  //ログインページでは，ローカルストレージをリセットする．
   useEffect(() => {
     localStorage.clear();
   }, []);
-
- // console.log(user);
 
   return (
     <div className="login">

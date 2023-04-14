@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MoreVert from '@mui/icons-material/MoreVert'
 import "./Post.css"
-// import { Users } from '../../dummyDate'
 import axios from "axios";
 import {format} from "timeago.js";
 import { Link } from 'react-router-dom';
@@ -31,6 +30,7 @@ function Post({ post }) {
     { name: '汉语', lg: 'zh' },
   ];
 
+  //ユーザ情報を取得
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.post(`/users/jwt`,token);
@@ -39,10 +39,10 @@ function Post({ post }) {
     fetchUser();
   }, [token]);
 
+  //投稿情報を取得
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.get(`/users?userId=${post.userId}`);
-      //console.log(response);
       setUser(response.data);
     };
     fetchUser();
@@ -63,8 +63,7 @@ function Post({ post }) {
     const [posts, setPosts] = useState([]);
     
       useEffect(() => {
-        fetch('https://script.google.com/macros/s/AKfycbz8w1HecYhT-HO0Gt0-RFfa_rLlhcCrZckttH0gII1ODua3wEn6Hw3QJ0U-Z_Z59yndMg/'+
-        'exec?text=' + props.text +'&source='+ beforelg +'&target='+ afterlg , {method: 'GET'})
+        fetch(process.env.REACT_APP_GAS + 'exec?text=' + props.text +'&source='+ beforelg +'&target='+ afterlg , {method: 'GET'})
         .then(response => {
           return response.json();
         })
@@ -86,6 +85,7 @@ function Post({ post }) {
     setBeforelg('');
     setAfterlg(e.target.value);
   }
+  
   return (
     <div className="post">
         <div className="postWrapper">

@@ -27,7 +27,7 @@ const Weather = () => {
         </>
       )
     }
-    const baseURL = "https://api.openweathermap.org/data/2.5/forecast?q=Osaka,JP&appid=cdc3eda3d8c884127841705c4d430d09&lang=ja&units=metric";
+    const baseURL = process.env.REACT_APP_OPENWEATHERMAP;
 
     const [post, setPost] = useState(null);
     const [currentUser,setCurrentUser] = useState({});
@@ -45,7 +45,7 @@ const Weather = () => {
       axios.get(baseURL).then((response) => {
         setPost(response.data);
       });
-    }, []);
+    }, [baseURL]);
   
     if (!post) return null;
     
