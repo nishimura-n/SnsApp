@@ -24,7 +24,8 @@ export default function Topbar() {
           window.location.href = '/login';
         } else {
           // その他のエラーの場合はアラートを表示する
-          alert(error.code);
+          alert("エラーが発生しました．再度ログインしてください．");
+          window.location.href = '/login';
         }
       });
       setUser(response.data);

@@ -15,12 +15,14 @@ passport.use(
     },
     async(username,password,done) => {
       const user = await User.findOne({ email: username });
+      //データベースに入力したemailと同じユーザがあるか判定
       if(!user){
         done(null, false, {
           message: "usernameまたはpasswordが違います",
         });
       }else{ 
         const vailedPassword = password === user.password;
+        //データベースに入力したemailと同じユーザがある場合に，パスワードがあっているか判定
         if(!vailedPassword){
         done(null, false, {
           message: "usernameまたはpasswordが違います",
@@ -35,6 +37,7 @@ passport.use(
 
 // passport-jwtの設定
 const opts = {
+  //jwtFromRequest->JWTを文字列またはnullとして返す関数
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
 };
