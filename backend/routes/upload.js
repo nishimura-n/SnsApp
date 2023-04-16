@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
 
+//ファイルをpublic/imagesに保存するためのストレージエンジンを定義
 const storage = multer.diskStorage({
     destination: (req,file, cb) => {
         cb(null, "public/images");

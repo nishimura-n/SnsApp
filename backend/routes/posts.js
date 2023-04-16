@@ -67,7 +67,7 @@ router.put("/:id/like", async (req, res) => {
                     },
                 });
                 return res.status(200).json("投稿にいいねを押しました！");
-                //投稿にすでにいいねが押されていたら
+            //投稿にすでにいいねが押されていたら
             }else {
                 //いいねしているユーザIDを取り除く
                 await post.updateOne({

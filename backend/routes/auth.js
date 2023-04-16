@@ -20,14 +20,16 @@ router.post("/register", async (req, res) => {
 })
 
 //JWTを用いたログイン
-router.post("/login",passport.authenticate('local',{ session: false }),
+router.post("/login",
+//セッションを使用しないで認証
+passport.authenticate('local',{ session: false }),
 async (req,res) => {
     try{
         const user = await User.findOne({ email: req.body.email });
         const payload = { user: user._id };
+        //JWTトークンを生成
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "5s",
-        //expiresIn: "1days",
+        expiresIn: "1days",
         });
         return res.status(200).json({token});
     } catch (err) {

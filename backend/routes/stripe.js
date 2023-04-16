@@ -12,9 +12,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 router.post("/create-checkout-session", async (req, res) => {
   const userId = req.body.userId;
   const user = await User.findById(userId);
+  //購入済みの場合，キャンセルページにリダイレクト
   if(user.isBuyer) {
     res.redirect(303, "http://localhost:3000/shop?canceled=true");
   }else{
+  //Stripe Checkout セッションを作成
   const session = await stripe.checkout.sessions.create({
     customer_creation: 'always',
     line_items: [
