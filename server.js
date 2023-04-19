@@ -38,7 +38,7 @@ app.use(
     'https://buy.stripe.com/',
     'https://checkout.stripe.com/'],
     "form-action": ["'self'",
-    'https://sns-app-v4.herokuapp.com/api/stripe/create-checkout-session',
+    'https://sns-app-simple.herokuapp.com/api/stripe/create-checkout-session',
     'https://buy.stripe.com/test_7sI180bUO55cdvWdQQ',
     'https://checkout.stripe.com/'],
     "require-trusted-types-for": ["'script'"],
