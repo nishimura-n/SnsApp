@@ -8,7 +8,7 @@ function Rightbar( {user} ) {
   const HomeRightbar = () =>{
     return (
         <>
-        <div className="evenrContainer">
+        {/* <div className="evenrContainer">
           <img src="assets/star.png" alt="" className='starImg' />
           <span className="eventText">
             <b>フォロワー限定</b>イベント開催中！
@@ -27,7 +27,7 @@ function Rightbar( {user} ) {
         <img src="assets/promotion/promotion2.jpeg" alt="" className='rightbarPromotionImg' />
         <p className="promotionName">カーショップ</p>
         <img src="assets/promotion/promotion3.jpeg" alt="" className='rightbarPromotionImg' />
-        <p className="promotionName">ShinCode株式会社</p>
+        <p className="promotionName">ShinCode株式会社</p> */}
         </>
     )
   }
@@ -35,7 +35,7 @@ function Rightbar( {user} ) {
   const ProfileRightbar = () => {
     return (
       <>
-      <h4 className="rightbarTitle">ユーザー情報</h4>
+      {/* <h4 className="rightbarTitle">ユーザー情報</h4>
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">出身：</span>
@@ -64,7 +64,7 @@ function Rightbar( {user} ) {
             <span className="rightbarFollowingName">Kikukawa</span>
           </div>
         </div>
-      </div>
+      </div> */}
       </>
     )
   }

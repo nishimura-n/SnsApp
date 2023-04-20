@@ -47,7 +47,7 @@ function Sidebar() {
             <span className="sidebarListItemText">ホーム</span>
             </Link>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <Search className="sidebarIcon" />
             <span className="sidebarListItemText">検索</span>
           </li>
@@ -58,7 +58,7 @@ function Sidebar() {
           <li className="sidebarListItem">
             <MessageRounded className="sidebarIcon" />
             <span className="sidebarListItemText">メッセージ</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
             <Link to={'/profile/' + user.username} style={{ textDecoration: "none",color: "black" }}>
@@ -92,12 +92,12 @@ function Sidebar() {
             <span className="sidebarListItemText">ログアウト</span>
           </li>
         </ul>
-        <hr className="sidebarHr"/>
+        {/* <hr className="sidebarHr"/>
         <ul className="sidebarFriendList">
           {Users.map((user) => (
           <CloseFriend user={user} key={user.id} />
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   )
