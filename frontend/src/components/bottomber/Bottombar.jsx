@@ -25,7 +25,19 @@ export default function Bottombar() {
   //ユーザ情報取得
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/jwt`,token);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/jwt`,token)
+      .catch(error => {
+        if (error.code === "ERR_BAD_REQUEST" && error.response.data === "Token expired") {
+          localStorage.clear();
+          // TokenExpiredErrorの場合はトークンが期限切れなので、ログインページにリダイレクトする
+          alert("セッションがタイムアウトしました．再度ログインしてください．");
+          window.location.href = '/login';
+        } else {
+          // その他のエラーの場合はアラートを表示する
+          alert("エラーが発生しました．再度ログインしてください．");
+          window.location.href = '/login';
+        }
+      });
       setUser(response.data);
     };
     fetchUser();
