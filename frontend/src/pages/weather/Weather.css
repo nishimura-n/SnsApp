@@ -10,6 +10,16 @@
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
+    margin-left: 20px;
+}
+
+.weatherSmartphone {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .title{

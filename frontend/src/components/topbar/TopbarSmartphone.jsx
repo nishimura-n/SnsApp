@@ -1,13 +1,13 @@
-import Search from "@mui/icons-material/Search"
+// import Search from "@mui/icons-material/Search"
 // import Chat from "@mui/icons-material/Chat"
 // import Notifications from "@mui/icons-material/Notifications"
 import React, { useContext, useEffect, useState } from 'react'
-import "./Topbar.css"
+import "./TopbarSmartphone.css"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../../state/AuthContext"
 import axios from "axios"
 
-export default function Topbar() {
+export default function TopbarSmartphone() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user,setUser] = useState({});
   const { user: token } = useContext(AuthContext);
@@ -37,14 +37,8 @@ export default function Topbar() {
     <div className="topbarContainer">
         <div className="topbarLeft">
             <Link to="/" style={{ textDecoration:"none" }}>
-              <span className="logo">Real SNS</span>
+              <span className="logoSmartphone">Real SNS</span>
             </Link>
-        </div>
-        <div className="topbarCenter">
-            <div className="searchbar">
-                <Search className="searchIcon"/>
-                <input type="text" className="searchInput" placeholder="探し物はなんですか？"/>
-            </div>
         </div>
         <div className="topbarRight">
             <div className="topbarItemIcons">

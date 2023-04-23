@@ -1,14 +1,14 @@
 import React from 'react'
 import "./Rightbar.css"
-import Online from '../online/Online'
-import { Users } from '../../dummyDate'
+// import Online from '../online/Online'
+// import { Users } from '../../dummyDate'
 
 function Rightbar( {user} ) {
-  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar = () =>{
     return (
         <>
-        <div className="evenrContainer">
+        {/* <div className="evenrContainer">
           <img src="assets/star.png" alt="" className='starImg' />
           <span className="eventText">
             <b>フォロワー限定</b>イベント開催中！
@@ -27,7 +27,7 @@ function Rightbar( {user} ) {
         <img src="assets/promotion/promotion2.jpeg" alt="" className='rightbarPromotionImg' />
         <p className="promotionName">カーショップ</p>
         <img src="assets/promotion/promotion3.jpeg" alt="" className='rightbarPromotionImg' />
-        <p className="promotionName">ShinCode株式会社</p>
+        <p className="promotionName">ShinCode株式会社</p> */}
         </>
     )
   }
@@ -41,7 +41,7 @@ function Rightbar( {user} ) {
           <span className="rightbarInfoKey">出身：</span>
           <span className="rightbarInfoKey">福岡</span>
         </div>
-        <h4 className="rightbarTitle">あなたの友達</h4>
+        {/* <h4 className="rightbarTitle">あなたの友達</h4>
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img src={PUBLIC_FOLDER + "/person/1.jpeg"} alt="" className="rightbarFollowingImg"/>
@@ -63,7 +63,7 @@ function Rightbar( {user} ) {
             <img src={PUBLIC_FOLDER + "/person/5.jpeg"} alt="" className="rightbarFollowingImg"/>
             <span className="rightbarFollowingName">Kikukawa</span>
           </div>
-        </div>
+        </div> */}
       </div>
       </>
     )

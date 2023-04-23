@@ -1,7 +1,7 @@
 import Image from '@mui/icons-material/Image'
-import Gif from '@mui/icons-material/Gif'
-import Face from '@mui/icons-material/Face'
-import Analytics from '@mui/icons-material/Analytics'
+// import Gif from '@mui/icons-material/Gif'
+// import Face from '@mui/icons-material/Face'
+// import Analytics from '@mui/icons-material/Analytics'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./Share.css"
 import { AuthContext } from '../../state/AuthContext'
@@ -67,7 +67,7 @@ function Share() {
                         <span className="shareOptionText">写真</span>
                         <input type="file" id="file" accept=".png, .jpeg, .jpg" style={{display:"none"}} onChange={(e) => setFile(e.target.files[0])}/>
                     </label>
-                    <label className="shareOption" htmlFor="file">
+                    {/* <label className="shareOption" htmlFor="file">
                         <Gif className="shareIcon" htmlColor="hotpink"/>
                         <span className="shareOptionText">GIF</span>
                         <input type="file" id="file" accept="image/gif" style={{display:"none"}} onChange={(e) => setFile(e.target.files[0])}/>
@@ -79,7 +79,7 @@ function Share() {
                     <div className="shareOption">
                         <Analytics className="shareIcon" htmlColor='red'/>
                         <span className="shareOptionText">投票</span>
-                    </div>
+                    </div> */}
                 </div>
                 <button className="shareButton" type="submit">投稿</button>
             </form>
