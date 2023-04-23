@@ -48,7 +48,7 @@ const Weather = () => {
 
     useEffect(() => {
       const fetchUser = async () => {
-        const response = await axios.post(`/users/jwt`,token);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/jwt`,token);
         setCurrentUser(response.data);
       };
       fetchUser();

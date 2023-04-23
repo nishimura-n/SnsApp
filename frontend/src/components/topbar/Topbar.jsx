@@ -15,7 +15,7 @@ export default function Topbar() {
   //ユーザー情報の取得とトークンの有効期限切れかどうか確認
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.post(`/users/jwt`,token)
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/jwt`,token)
       .catch(error => {
         if (error.code === "ERR_BAD_REQUEST" && error.response.data === "Token expired") {
           localStorage.clear();

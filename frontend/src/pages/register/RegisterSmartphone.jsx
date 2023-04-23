@@ -41,7 +41,7 @@ function RegiterSmartphone() {
                 password: password.current.value,
             };
             //registerApiを叩く
-            await axios.post("/auth/register", user);
+            await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, user);
             navigate("/login");
         }catch (err){
             console.log(err);

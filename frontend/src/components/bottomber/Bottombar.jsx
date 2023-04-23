@@ -25,7 +25,7 @@ export default function Bottombar() {
   //ユーザ情報取得
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.post(`/users/jwt`,token);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/jwt`,token);
       setUser(response.data);
     };
     fetchUser();
