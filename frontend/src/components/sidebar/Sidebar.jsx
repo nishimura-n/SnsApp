@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./Sidebar.css"
 import Home from '@mui/icons-material/Home'
-import Search from '@mui/icons-material/Search'
-import Notifications from '@mui/icons-material/Notifications'
-import MessageRounded from '@mui/icons-material/MessageRounded'
+// import Search from '@mui/icons-material/Search'
+// import Notifications from '@mui/icons-material/Notifications'
+// import MessageRounded from '@mui/icons-material/MessageRounded'
 import Person from '@mui/icons-material/Person'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import LogoutIcon from '@mui/icons-material/Logout';
-import CloseFriend from '../closeFriend/CloseFriend'
+// import CloseFriend from '../closeFriend/CloseFriend'
+import SettingsIcon from '@mui/icons-material/Settings';
 import HttpsIcon from '@mui/icons-material/Https';
 import { useNavigate } from "react-router-dom";
-import { Users } from '../../dummyDate'
+// import { Users } from '../../dummyDate'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
 import axios from 'axios'
@@ -47,7 +48,7 @@ function Sidebar() {
             <span className="sidebarListItemText">ホーム</span>
             </Link>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <Search className="sidebarIcon" />
             <span className="sidebarListItemText">検索</span>
           </li>
@@ -58,7 +59,7 @@ function Sidebar() {
           <li className="sidebarListItem">
             <MessageRounded className="sidebarIcon" />
             <span className="sidebarListItemText">メッセージ</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
             <Link to={'/profile/' + user.username} style={{ textDecoration: "none",color: "black" }}>
@@ -87,17 +88,21 @@ function Sidebar() {
             <HttpsIcon className="sidebarBuyerIcon"/>
           </li>
           }
+          <li className="sidebarListItem">
+            <SettingsIcon className="sidebarIcon" />
+            <span className="sidebarListItemText">設定</span>
+          </li>
           <li className="sidebarListItem" onClick={Logout}>
             <LogoutIcon className="sidebarIcon" />
             <span className="sidebarListItemText">ログアウト</span>
           </li>
         </ul>
-        <hr className="sidebarHr"/>
+        {/* <hr className="sidebarHr"/>
         <ul className="sidebarFriendList">
           {Users.map((user) => (
           <CloseFriend user={user} key={user.id} />
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   )

@@ -1,39 +1,51 @@
-.login {
+.SmartphoneBack{
     width: 100vw;
     height: 100vh;
     background-color: #f0f2f5;
+}
+
+.loginSmartphone {
+    width: 100%;
+    height: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.loginWrapper {
+.loginWrapperSmartphone {
     width: 70%;
     height: 70%;
     /* background-color: green; */
-    display: flex;
 }
 
-.loginLeft,
-.loginRight {
+.loginLeftSmartphone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.loginRightSmartphone {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.loginLogo {
-    font-size: 50px;
+.loginLogoSmartphone {
+    font-size: 2.5rem;
     font-weight: 800;
     color: #41428b;
     margin-bottom: 10px;
 }
 
-.loginDesc {
-    font-size: 24px;
+.loginDescSmartphone {
+    font-size: 1.2rem;
 } 
 
-.loginBox {
+.loginBoxSmartphone {
     height: 400px;
     padding: 20px;
     background-color: white;
@@ -44,7 +56,7 @@
     box-shadow: 3px 7px 13px -10px #65789f;
 }
 
-.loginInput {
+.loginInputSmartphone {
     height: 50px;
     border-radius: 10px;
     border: 1px solid gray;
@@ -53,48 +65,69 @@
     margin-bottom: 15px;
 }
 
-.loginInput:focus {
+.loginInputSmartphone:focus {
     outline: none;
 }
 
-.loginButton {
+.loginInputSmartphoneMini {
+    height: 3rem;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 1rem;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.loginInputSmartphoneMini:focus {
+    outline: none;
+}
+
+.loginButtonSmartphone {
     height: 50px;
     border-radius: 10px;
     border: none;
     background-color: #41428b;
     color: white;
-    font-size: 20px;
+    font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
 } 
 
-.loginForgot {
+.loginForgotSmartphone {
     text-align: center;
     color: #41428b;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
-.loginRegisterButton {
+.loginRegisterButtonSmartphone {
     height: 50px;
-    width: 60%;
+    width: 100%;
     align-self: center;
     border-radius: 10px;
     border: none;
     background-color: #3c8b50;
     color: white;
-    font-size: 20px;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
+    margin-top: 15px;
 }
 
-.loginMsg {
+.loginMsgSmartphone {
     text-align: center;
     font-weight: 550;
-    font-size: 20px;
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-.registerLink {
+.loginMsgSmartphoneMini {
+    text-align: center;
+    font-weight: 550;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.registerLinkSmartphone {
     height: 50px;
     width: 100%;
     text-align: center;
