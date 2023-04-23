@@ -22,6 +22,13 @@ export default function Bottombar() {
   const [user,setUser] = useState({});
   const { user: token } = useContext(AuthContext);
 
+  //ログアウト処理
+  const Logout = () => {
+      localStorage.clear();
+      navigate("/login");
+      window.location.reload();
+  }
+
   //ユーザ情報取得
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,11 +51,6 @@ export default function Bottombar() {
   }, [token]);
   const navigate = useNavigate();
 
-  //ログアウト処理
-  const Logout = () => {
-    localStorage.clear();
-    navigate("/login");
-  }
     return(
     <div className="Bottombar">
       <div className="BottomWrapper">
