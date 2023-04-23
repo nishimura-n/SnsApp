@@ -34,6 +34,7 @@ export default function Bottombar() {
 
   //ログアウト処理
   const Logout = () => {
+    localStorage.clear();
     navigate("/login");
     window.location.reload();
   }
