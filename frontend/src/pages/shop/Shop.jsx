@@ -36,10 +36,10 @@ export default function Shop() {
   }, [token]);
 
   const Message = ({ message }) => (
-    <section>
+    <section className="section">
       <p>{message}</p>
     <Link to={'/'}>
-     <button>
+     <button style={{marginTop:"10px"}}>
        ホームに戻る
      </button>
     </Link>
