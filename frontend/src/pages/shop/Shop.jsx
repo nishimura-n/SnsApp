@@ -106,7 +106,7 @@ export default function Shop() {
              <h3>お天気情報拡張機能</h3>
              <h5>100円</h5>
              <div className="info">
-            <form action="http://localhost:5005/api/stripe/create-checkout-session" method="POST">
+            <form action={`${process.env.REACT_APP_API_URL}/stripe/create-checkout-session`}  method="POST">
              <input type='hidden' name='userId' value={currentUser._id || "" } /> 
              <button type="submit">購入ページに進む</button>
             </form>
