@@ -48,7 +48,6 @@ export default function Bottombar() {
   const Logout = () => {
     localStorage.clear();
     navigate("/login");
-    window.location.reload();
   }
     return(
     <div className="Bottombar">
