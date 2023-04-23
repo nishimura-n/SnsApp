@@ -41,8 +41,8 @@ export default function Bottombar() {
           window.location.href = '/login';
         } else {
           // その他のエラーの場合はアラートを表示する
-          alert("エラーが発生しました．再度ログインしてください．");
-          window.location.href = '/login';
+          //alert("エラーが発生しました．再度ログインしてください．");
+          //window.location.href = '/login';
         }
       });
       setUser(response.data);
