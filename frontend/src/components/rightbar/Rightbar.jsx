@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Rightbar.css"
-import Online from '../online/Online'
-import { Users } from '../../dummyDate'
+// import Online from '../online/Online'
+// import { Users } from '../../dummyDate'
 
 function Rightbar( {user} ) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;

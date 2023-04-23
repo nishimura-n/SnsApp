@@ -2,12 +2,25 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios";
 import { AuthContext } from '../../state/AuthContext';
 import Grid from '@mui/material/Grid';
+import TopbarSmartphone from '../../components/topbar/TopbarSmartphone'
+import Bottombar from '../../components/bottomber/Bottombar.jsx'
 import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import "./Weather.css"
+import { createTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      md: 1000,
+    },
+  },
+});
 
 const Weather = () => {
+    const onlyMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
     const Time = (prop) => {
       //JSON形式を文字列に変換
       var propStr = JSON.stringify(prop);
@@ -35,7 +48,7 @@ const Weather = () => {
 
     useEffect(() => {
       const fetchUser = async () => {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/jwt`,token);
+        const response = await axios.post(`/users/jwt`,token);
         setCurrentUser(response.data);
       };
       fetchUser();
@@ -51,6 +64,82 @@ const Weather = () => {
     
     return (
     <>
+      {onlyMediumScreen ?
+      <>
+      <TopbarSmartphone/> 
+        <div className="Container">
+         {currentUser.isBuyer ? 
+           <div className="weatherSmartphone">
+             <h2 className="title">大阪の気象情報予報</h2>
+             <Grid container direction="row" alignItems="center" justify="space-around" spacing={1}>
+              <Grid item xs={4}>
+               <Time prop={post.list[0].dt_txt}/>
+               <p className="info">空模様 : {post.list[0].weather[0].description}</p>
+               <p className="info">気温 : {post.list[0].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[0].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+              <Time prop={post.list[1].dt_txt}/>
+               <p className="info">空模様 : {post.list[1].weather[0].description}</p>
+               <p className="info">気温 : {post.list[1].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[1].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+              <Time prop={post.list[2].dt_txt}/>
+               <p className="info">空模様 : {post.list[2].weather[0].description}</p>
+               <p className="info">気温 : {post.list[2].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[2].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+               <Time prop={post.list[3].dt_txt}/>
+               <p className="info">空模様 : {post.list[3].weather[0].description}</p>
+               <p className="info">気温 : {post.list[3].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[0].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+              <Time prop={post.list[4].dt_txt}/>
+               <p className="info">空模様 : {post.list[4].weather[0].description}</p>
+               <p className="info">気温 : {post.list[4].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[1].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+              <Time prop={post.list[5].dt_txt}/>
+               <p className="info">空模様 : {post.list[5].weather[0].description}</p>
+               <p className="info">気温 : {post.list[5].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[2].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+               <Time prop={post.list[6].dt_txt}/>
+               <p className="info">空模様 : {post.list[6].weather[0].description}</p>
+               <p className="info">気温 : {post.list[6].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[0].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+              <Time prop={post.list[7].dt_txt}/>
+               <p className="info">空模様 : {post.list[7].weather[0].description}</p>
+               <p className="info">気温 : {post.list[7].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[1].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+              <Grid item xs={4}>
+              <Time prop={post.list[8].dt_txt}/>
+               <p className="info">空模様 : {post.list[8].weather[0].description}</p>
+               <p className="info">気温 : {post.list[8].main.temp}度</p>
+               <img className="img" src={'http://openweathermap.org/img/w/'+post.list[2].weather[0].icon+'.png'} alt="weather"/>
+              </Grid>
+            </Grid>
+           </div>
+                     :
+           <div className="weather">
+             <div>セッションがタイムアウトしています．</div>
+             <div>再度ログインしてください．</div>
+             <div>購入者のみこのページを閲覧できます．</div>
+           </div>
+           }
+          <Bottombar/>
+        </div>
+     </>
+      :
+    <>
      <Topbar/> 
        <div className="Container">
          <Sidebar/>
@@ -62,73 +151,73 @@ const Weather = () => {
               <Time prop={post.list[0].dt_txt}/>
               <p className="info">空模様 : {post.list[0].weather[0].description}</p>
               <p className="info">気温 : {post.list[0].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[0].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[0].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[1].dt_txt}/>
               <p className="info">空模様 : {post.list[1].weather[0].description}</p>
               <p className="info">気温 : {post.list[1].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[1].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[1].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[2].dt_txt}/>
               <p className="info">空模様 : {post.list[2].weather[0].description}</p>
               <p className="info">気温 : {post.list[2].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[2].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[2].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[3].dt_txt}/>
               <p className="info">空模様 : {post.list[3].weather[0].description}</p>
               <p className="info">気温 : {post.list[3].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[3].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[3].weather[0].icon+'.png'} alt="weather"/>
               </Grid>
               <Grid item xs={3}>
               <Time prop={post.list[4].dt_txt}/>
               <p className="info">空模様 : {post.list[4].weather[0].description}</p>
               <p className="info">気温 : {post.list[4].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[4].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[4].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[5].dt_txt}/>
               <p className="info">空模様 : {post.list[5].weather[0].description}</p>
               <p className="info">気温 : {post.list[5].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[5].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[5].weather[0].icon+'.png'} alt="weather"/>
               </Grid>
               <Grid item xs={3}>
               <Time prop={post.list[6].dt_txt}/>
               <p className="info">空模様 : {post.list[6].weather[0].description}</p>
               <p className="info">気温 : {post.list[6].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[6].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[6].weather[0].icon+'.png'} alt="weather"/>
               </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[7].dt_txt}/>
               <p className="info">空模様 : {post.list[7].weather[0].description}</p>
               <p className="info">気温 : {post.list[7].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[7].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[7].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[8].dt_txt}/>
               <p className="info">空模様 : {post.list[8].weather[0].description}</p>
               <p className="info">気温 : {post.list[8].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[8].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[8].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
               <Time prop={post.list[9].dt_txt}/>
               <p className="info">空模様 : {post.list[9].weather[0].description}</p>
               <p className="info">気温 : {post.list[9].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[9].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[9].weather[0].icon+'.png'} alt="weather"/>
               </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[10].dt_txt}/>
               <p className="info">空模様 : {post.list[10].weather[0].description}</p>
               <p className="info">気温 : {post.list[10].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[10].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[10].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
              <Grid item xs={3}>
              <Time prop={post.list[11].dt_txt}/>
               <p className="info">空模様 : {post.list[11].weather[0].description}</p>
               <p className="info">気温 : {post.list[11].main.temp}度</p>
-              <img crossorigin="anonymous" className="img" src={'http://openweathermap.org/img/w/'+post.list[11].weather[0].icon+'.png'} alt="weather"/>
+              <img className="img" src={'http://openweathermap.org/img/w/'+post.list[11].weather[0].icon+'.png'} alt="weather"/>
              </Grid>
             </Grid>
           </div>
@@ -141,6 +230,8 @@ const Weather = () => {
           }
      <Rightbar/>
        </div>
+    </>
+    }
     </>
     );
   

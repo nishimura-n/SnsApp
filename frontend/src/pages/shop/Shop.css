@@ -9,11 +9,31 @@
     margin-top: 30px;
 }
 
+.shopSmartphone {
+    flex: 6;
+}
+
+.shopSmartphoneText {
+    margin-left: 1rem;
+}
+
 .imgae {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 10px;
+}
+
+.imgaeSmartphone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.imageSmartphone img {
+    width: 100% !important;
+    object-fit: cover;
 }
 
 .info {

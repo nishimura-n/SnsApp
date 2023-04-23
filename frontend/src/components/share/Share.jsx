@@ -1,7 +1,7 @@
 import Image from '@mui/icons-material/Image'
-import Gif from '@mui/icons-material/Gif'
-import Face from '@mui/icons-material/Face'
-import Analytics from '@mui/icons-material/Analytics'
+// import Gif from '@mui/icons-material/Gif'
+// import Face from '@mui/icons-material/Face'
+// import Analytics from '@mui/icons-material/Analytics'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./Share.css"
 import { AuthContext } from '../../state/AuthContext'

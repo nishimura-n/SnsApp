@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./Sidebar.css"
 import Home from '@mui/icons-material/Home'
-import Search from '@mui/icons-material/Search'
-import Notifications from '@mui/icons-material/Notifications'
-import MessageRounded from '@mui/icons-material/MessageRounded'
+// import Search from '@mui/icons-material/Search'
+// import Notifications from '@mui/icons-material/Notifications'
+// import MessageRounded from '@mui/icons-material/MessageRounded'
 import Person from '@mui/icons-material/Person'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import LogoutIcon from '@mui/icons-material/Logout';
-import CloseFriend from '../closeFriend/CloseFriend'
+// import CloseFriend from '../closeFriend/CloseFriend'
 import HttpsIcon from '@mui/icons-material/Https';
 import { useNavigate } from "react-router-dom";
-import { Users } from '../../dummyDate'
+// import { Users } from '../../dummyDate'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../state/AuthContext'
 import axios from 'axios'
@@ -87,6 +87,10 @@ function Sidebar() {
             <HttpsIcon className="sidebarBuyerIcon"/>
           </li>
           }
+          <li className="sidebarListItem">
+            <SettingsIcon className="sidebarIcon" />
+            <span className="sidebarListItemText">設定</span>
+          </li>
           <li className="sidebarListItem" onClick={Logout}>
             <LogoutIcon className="sidebarIcon" />
             <span className="sidebarListItemText">ログアウト</span>
