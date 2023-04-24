@@ -1,3 +1,10 @@
+.progress {
+    display: flex;
+    justify-content: center;
+    margin-top: 12rem;
+    margin-right: 20px;
+}
+
 .Container {
     display: flex;
     width: 100%;
@@ -11,6 +18,7 @@
     align-items: center;
     margin-top: 30px;
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .weatherSmartphone {
@@ -19,17 +27,43 @@
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
-    margin-left: 20px;
+    margin-bottom: 80px;
 }
 
-.title{
-    margin-bottom: 5px;
+@media screen and (max-width: 767px) {
+    .info{
+        font-size: 14px;
+    }
+    .img{
+        width: 100px;  
+    }
+    .title{
+        margin-bottom: 5px;
+    }
 }
 
-.info{
-   font-size: 14px;
+@media screen and (min-width: 768px){
+    .info{
+        font-size: 14px;
+    }
+    
+    .img{
+        width: 100px;  
+    }
+    .title{
+        margin-bottom: 5px;
+    }
 }
 
-.img{
-    width: 100px;  
+@media only screen and (min-width: 768px) and (max-width: 1000px) {
+    .info{
+        font-size: 27px;
+     }
+    .img{
+        width: 200px;  
+    }
+    .title{
+        font-size: 42px;
+        margin-bottom: 5px;
+    }
 }
