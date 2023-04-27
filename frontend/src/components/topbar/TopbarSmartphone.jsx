@@ -25,7 +25,7 @@ export default function TopbarSmartphone() {
     <div className="topbarContainer">
         <div className="topbarLeft">
             <Link to="/" style={{ textDecoration:"none" }}>
-              <span className="logoSmartphone">Real SNS</span>
+              <span className="logoSmartphone">Simple SNS</span>
             </Link>
         </div>
         <div className="topbarRight">

@@ -41,11 +41,11 @@ function LoginSmartphone() {
      <div className="loginSmartphone">
         <div className="loginWrapperSmartphone">
             <div className="loginLeftSmartphone">
-                <h3 className="loginLogoSmartphone">Real SNS</h3>
+                <h3 className="loginLogoSmartphone">Simple SNS</h3>
                 { onlyMiniScreen ?
-                <span className="loginDescSmartphone">本格的なSNSを，<br/>自分の手で</span>
+                <span className="loginDescSmartphone">つながり，<br/>広がろう</span>
                 :
-                <span className="loginDescSmartphone">本格的なSNSを，自分の手で</span>
+                <span className="loginDescSmartphone">つながり，広がろう</span>
                 }
             </div>
             <div className="loginRightSmartphone">
