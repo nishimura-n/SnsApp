@@ -88,10 +88,10 @@ function Sidebar() {
             <HttpsIcon className="sidebarBuyerIcon"/>
           </li>
           }
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <SettingsIcon className="sidebarIcon" />
             <span className="sidebarListItemText">設定</span>
-          </li>
+          </li> */}
           <li className="sidebarListItem" onClick={Logout}>
             <LogoutIcon className="sidebarIcon" />
             <span className="sidebarListItemText">ログアウト</span>
