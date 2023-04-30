@@ -23,6 +23,19 @@ mongoose.connect(process.env.MONGOURL)
 
 //ミドルウェア
 app.use(helmet());//セキュリティ対策
+// XSS対策
+app.use(helmet.xssFilter());
+// SameSite属性の設定
+app.use(helmet({
+  referrerPolicy: { policy: 'same-origin' },
+  featurePolicy: {
+    geolocation: ["'none'"]
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true
+  }
+}));
 app.use(
   helmet.crossOriginResourcePolicy({ 
     policy: "cross-origin"
@@ -46,6 +59,7 @@ app.use(
     'http://openweathermap.org/']
   }
 }));
+app.use(helmet.hsts({ maxAge: expiryDate }));
 app.disable('x-powered-by');
 app.use(`/api/stripe`, stripeRoute);//JSON形式で渡したらだめ
 app.use(`/images`,express.static(path.join(__dirname,"public/images")))
