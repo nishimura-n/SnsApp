@@ -29,8 +29,8 @@ function LoginPC() {
     <div className="login">
         <div className="loginWrapper">
             <div className="loginLeft">
-                <h3 className="loginLogo">Real SNS</h3>
-                <span className="loginDesc">本格的なSNSを，自分の手で</span>
+                <h3 className="loginLogo">Simple SNS</h3>
+                <span className="loginDesc">つながって，共有しよう</span>
             </div>
             <div className="loginRight">
                 <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>

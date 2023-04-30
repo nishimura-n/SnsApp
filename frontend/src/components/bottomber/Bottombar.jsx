@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import LogoutIcon from '@mui/icons-material/Logout';
 // import CloseFriend from '../closeFriend/CloseFriend'
-import SettingsIcon from '@mui/icons-material/Settings';
+// import SettingsIcon from '@mui/icons-material/Settings';
 import HttpsIcon from '@mui/icons-material/Https';
 import { useNavigate } from "react-router-dom";
 // import { Users } from '../../dummyDate'
@@ -71,11 +71,11 @@ export default function Bottombar() {
             </Link>
           </li>
           }
-          <li className="BottomListItem">
-            <Link>
+          {/* <li className="BottomListItem">
+            <Link to={'/setting'} style={{color: "white" }}>
             <SettingsIcon className="BottomIcon" style={{color: "white" }}/>
             </Link>
-          </li>
+          </li> */}
           <li className="BottomListItem" onClick={Logout}>
             <Link>
             <LogoutIcon className="BottomIcon" style={{color: "white" }}/>

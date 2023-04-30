@@ -29,7 +29,7 @@ async (req,res) => {
         const payload = { user: user._id };
         //JWTトークンを生成
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "1days",
+        expiresIn: "30m",
         });
         return res.status(200).json({token});
     } catch (err) {

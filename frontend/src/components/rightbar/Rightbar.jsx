@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import axios from "axios";
+import { AuthContext } from '../../state/AuthContext';
 import "./Rightbar.css"
 // import Online from '../online/Online'
 // import { Users } from '../../dummyDate'
 
 function Rightbar( {user} ) {
-  // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [currentUser,setCurrentUser] = useState({});
+    const { user: token } = useContext(AuthContext);
+    //ユーザ情報を取得
+    useEffect(() => {
+      const fetchUser = async () => {
+        const response = await axios.post(`/users/jwt`,token);
+        setCurrentUser(response.data);
+      };
+      fetchUser();
+    }, [token]);
+
+    // const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar = () =>{
     return (
         <>
@@ -38,8 +51,17 @@ function Rightbar( {user} ) {
       <h4 className="rightbarTitle">ユーザー情報</h4>
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
+          {currentUser.city ? 
+          <>
           <span className="rightbarInfoKey">出身：</span>
-          <span className="rightbarInfoKey">福岡</span>
+          <span className="rightbarInfoKey">{currentUser.city}</span>
+          </>
+          :
+          <>
+          <span className="rightbarInfoKey">出身：</span>
+          <span className="rightbarInfoKey">未設定</span>
+          </>
+          }
         </div>
         {/* <h4 className="rightbarTitle">あなたの友達</h4>
         <div className="rightbarFollowings">
