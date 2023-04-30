@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const cookieParser = require('cookie-parser');
-const csrf = require('csurf');
 const helmet = require('helmet')
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -23,49 +21,8 @@ mongoose.connect(process.env.MONGOURL)
   console.log(err);
 });
 
-// cookie-parserの設定
-app.use(cookieParser());
-
-// csurfの設定
-const csrfProtection = csrf({
-  cookie: true, // CSRFトークンをcookieに保存する
-  ignoreMethods: ['GET', 'HEAD', 'OPTIONS'], // CSRFトークンを生成しないリクエストメソッド
-});
-
-// CSRFトークンを生成して、セッションに保存するミドルウェア
-app.use((req, res, next) => {
-  if (req.method === 'GET' || req.method === 'HEAD') {
-    // GETやHEADリクエストにはCSRFトークンは必要ないため、何もしない
-    return next();
-  }
-  // CSRFトークンを生成し、セッションに保存する
-  const csrfToken = req.csrfToken();
-  req.session.csrfToken = csrfToken;
-  // レスポンスにCSRFトークンをセットする
-  res.cookie('XSRF-TOKEN', csrfToken);
-  next();
-});
-
-// csurfミドルウェアの設定
-app.use(csrfProtection);
-
 //ミドルウェア
 app.use(helmet());//セキュリティ対策
-// XSS対策
-app.use(helmet.xssFilter());
-// CSRF対策
-app.use(helmet.csrf({ cookie: true }));
-// SameSite属性の設定
-app.use(helmet({
-  referrerPolicy: { policy: 'same-origin' },
-  featurePolicy: {
-    geolocation: ["'none'"]
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true
-  }
-}));
 app.use(
   helmet.crossOriginResourcePolicy({ 
     policy: "cross-origin"
@@ -89,9 +46,6 @@ app.use(
     'http://openweathermap.org/']
   }
 }));
-// トークンの有効期限の設定
-const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
-app.use(helmet.hsts({ maxAge: expiryDate }));
 app.disable('x-powered-by');
 app.use(`/api/stripe`, stripeRoute);//JSON形式で渡したらだめ
 app.use(`/images`,express.static(path.join(__dirname,"public/images")))
