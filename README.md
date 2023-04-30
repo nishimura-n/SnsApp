@@ -10,7 +10,9 @@ https://sns-app-simple.herokuapp.com/login
 
 <img src="./frontend/READMEimg/responsive.png" width="30%">
 
-3\. 処理に時間のかかる場所にスピナー作成(2023/4/24)
+3\. 処理のかかる場所においてスピナー作成(2023/4/24)
+
+4\. helmetにてJWTトークンの管理におけるセキュリティ対策(2023/4/30)
 
 # 使用方法
 1\. Registerページでアカウントを登録．

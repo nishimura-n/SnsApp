@@ -23,7 +23,42 @@ mongoose.connect(process.env.MONGOURL)
 
 //ミドルウェア
 app.use(helmet());//セキュリティ対策
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+// XSS対策
+app.use(helmet.xssFilter());
+// SameSite属性の設定
+app.use(helmet({
+  referrerPolicy: { policy: 'same-origin' },
+  featurePolicy: {
+    geolocation: ["'none'"]
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true
+  }
+}));
+app.use(
+  helmet.crossOriginResourcePolicy({ 
+    policy: "cross-origin"
+  }),
+  helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'",
+    'https://checkout.stripe.com/'],
+    connectSrc: ["'self'",
+    'https://script.google.com/',
+    'https://script.googleusercontent.com/',
+    'https://api.openweathermap.org/',
+    'https://buy.stripe.com/',
+    'https://checkout.stripe.com/'],
+    "form-action": ["'self'",
+    'https://sns-app-simple.herokuapp.com/api/stripe/create-checkout-session',
+    'https://buy.stripe.com/test_7sI180bUO55cdvWdQQ',
+    'https://checkout.stripe.com/'],
+    "require-trusted-types-for": ["'script'"],
+    'img-src': ["'self'", 
+    'http://openweathermap.org/']
+  }
+}));
 app.disable('x-powered-by');
 app.use("/api/stripe", stripeRoute);//JSON形式で渡したらだめ
 app.use("/images",express.static(path.join(__dirname,"public/images")))

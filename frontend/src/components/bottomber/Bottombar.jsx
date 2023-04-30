@@ -71,11 +71,11 @@ export default function Bottombar() {
             </Link>
           </li>
           }
-          <li className="BottomListItem">
-            <Link>
+          {/* <li className="BottomListItem">
+            <Link to={'/setting'} style={{color: "white" }}>
             <SettingsIcon className="BottomIcon" style={{color: "white" }}/>
             </Link>
-          </li>
+          </li> */}
           <li className="BottomListItem" onClick={Logout}>
             <Link>
             <LogoutIcon className="BottomIcon" style={{color: "white" }}/>

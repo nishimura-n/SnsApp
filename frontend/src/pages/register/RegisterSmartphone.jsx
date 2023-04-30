@@ -54,11 +54,11 @@ function RegiterSmartphone() {
      <div className="loginSmartphone">
         <div className="loginWrapperSmartphone">
             <div className="loginLeftSmartphone">
-                <h3 className="loginLogoSmartphone">Real SNS</h3>
+                <h3 className="loginLogoSmartphone">Simple SNS</h3>
                 { onlyMiniScreen ?
-                <span className="loginDescSmartphone">本格的なSNSを，<br/>自分の手で</span>
+                <span className="loginDescSmartphone">つながって，<br/>共有しよう</span>
                 :
-                <span className="loginDescSmartphone">本格的なSNSを，自分の手で</span>
+                <span className="loginDescSmartphone">つながって，共有しよう</span>
                 }
             </div>
             <div className="loginRightSmartphone">
