@@ -59,7 +59,6 @@ app.use(
     'http://openweathermap.org/']
   }
 }));
-app.use(helmet.hsts({ maxAge: expiryDate }));
 app.disable('x-powered-by');
 app.use(`/api/stripe`, stripeRoute);//JSON形式で渡したらだめ
 app.use(`/images`,express.static(path.join(__dirname,"public/images")))
