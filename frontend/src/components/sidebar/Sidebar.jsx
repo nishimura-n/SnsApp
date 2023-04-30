@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import LogoutIcon from '@mui/icons-material/Logout';
 // import CloseFriend from '../closeFriend/CloseFriend'
-import SettingsIcon from '@mui/icons-material/Settings';
+// import SettingsIcon from '@mui/icons-material/Settings';
 import HttpsIcon from '@mui/icons-material/Https';
 import { useNavigate } from "react-router-dom";
 // import { Users } from '../../dummyDate'
