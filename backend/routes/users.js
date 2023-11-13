@@ -52,6 +52,11 @@ router.get("/", async(req, res) => {
 // トークンの認証とユーザー情報を取得
 router.post("/jwt",async (req, res) => {
     const token = req.body.token;
+    
+    // トークンが存在しない場合の処理
+    if (!token) {
+        return res.status(401).json({ message: 'トークンが提供されていません' });
+    }
     let decoded = {};
     try{
     decoded = jwt.verify(token, process.env.JWT_SECRET);
